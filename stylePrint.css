@@ -1,0 +1,66 @@
+@media print {
+    @page {
+        size: letter;
+        margin: 0;
+        /* usamos padding interno para los márgenes APA */
+    }
+
+    body {
+        background: white !important;
+        margin: 0;
+        padding: 0;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    /* Ocultar paneles, herramientas, etc. */
+    .toolsTop,
+    .toolsGeneral,
+    footer {
+        display: none !important;
+    }
+
+    .container {
+        display: block;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: visible;
+    }
+
+    .editor {
+        width: 100%;
+        overflow: visible !important;
+        padding: 0;
+        margin: 0;
+    }
+
+    .addBtn {
+        display: none;
+    }
+
+    /* Cada página ocupa toda la hoja carta */
+    .page {
+        position: relative;
+        width: 100%;
+        min-height: 27.94cm;
+        height: auto;
+        margin: 0;
+        font-size: 11pt;
+        background: white;
+        border: none;
+        box-shadow: none;
+        box-sizing: border-box;
+        page-break-after: always;
+        /* cada .page = nueva hoja */
+    }
+
+    /**/
+    .delete-block-btn {
+        display: none;
+    }
+
+    .resize-handle {
+        display: none;
+    }
+}

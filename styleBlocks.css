@@ -1,0 +1,192 @@
+:root {
+    --green: #388E3C;
+    --select: #0078d7
+}
+
+.blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+
+    .block {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        cursor: move;
+        user-select: none;
+    }
+}
+
+/* === Estilos para la página y bloques === */
+#titleHeader {
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--green);
+}
+
+#title {
+    display: inline-block;
+    width: auto;
+    padding-right: 50px;
+    font-weight: bold;
+    border: 2px solid var(--green);
+    border-radius: 7px;
+}
+
+#subtitle {
+    display: inline-block;
+    width: auto;
+    font-weight: bold;
+    border-bottom: 2px solid var(--green);
+}
+
+#code {
+    display: inline-block;
+    background: #f4f4f4;
+    border: 1px solid #ccc;
+    border-left: 6px solid var(--green);
+    border-radius: 7px;
+    padding-left: 10px;
+    word-wrap: break-word;
+
+    & * {
+        font-family: "Consolas", "Courier New", monospace;
+        text-indent: 0;
+        font-weight: 600;
+    }
+}
+
+/* FIGURA APA 7 */
+.figure-block {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+}
+
+.figure-block img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+/* Placeholder cuando aún no hay imagen */
+.image-placeholder {
+    border: 1px dashed #aaa;
+    border-radius: 6px;
+    color: #666;
+    text-align: center;
+    cursor: pointer;
+    transition: background .2s, border-color .2s;
+}
+
+.image-placeholder:hover {
+    background: #f5f5f5;
+    border-color: #888;
+}
+
+/* Caption de la figura */
+.figure-caption {
+    font-size: 14px;
+    font-style: italic;
+    margin-top: 8px;
+}
+
+/* Contenedor que envuelve imagen + handle */
+.figure-img-wrapper {
+    display: inline-block;
+    position: relative;
+    max-width: 80%;
+}
+
+/* Pequeño cuadrado para redimensionar (esquina inferior derecha) */
+.resize-handle {
+    width: 14px;
+    height: 14px;
+    background: #4a90e2;
+    border-radius: 3px;
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    cursor: nwse-resize;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+/* === Bloques colocados dentro de la hoja === */
+.page .placed-block {
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: transparent;
+    border: 1px dashed transparent;
+    transition: border-color .25s, box-shadow .25s;
+}
+
+.page .placed-block:hover {
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.10);
+}
+
+.block-content {
+    outline: none;
+    text-indent: 1.27cm;
+    text-align: inherit;
+    color: inherit;
+    cursor: text;
+    user-select: text;
+    min-height: 1em;
+}
+
+.page .placed-block:focus {
+    outline: 2px solid var(--select);
+}
+
+/* Indicador visual al arrastrar */
+.page .drag-over {
+    border-top: 2px solid var(--select);
+}
+
+/* ===== Efecto visual al arrastrar un bloque ===== */
+.placed-block.dragging {
+    opacity: 0.6;
+    border: 2px dashed #4a90e2;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.20);
+}
+
+/* Indicador visual para eliminar */
+.delete-block-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: #ff4b4b;
+    color: white;
+    border: none;
+    padding: 4px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity .2s ease;
+    z-index: 10;
+}
+
+.placed-block:hover .delete-block-btn {
+    opacity: 1;
+}
+
+.delete-block-btn:hover {
+    background: #d93636;
+}
+
+/* === Encabezado APA === */
+.header {
+    position: absolute;
+    top: 1.27cm;
+    left: 2.54cm;
+    right: 2.54cm;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12pt;
+}

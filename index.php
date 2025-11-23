@@ -26,6 +26,7 @@
                 <button id="btnBold" title="Negrita"><b>B</b></button>
                 <button id="btnItalic" title="Cursiva"><i>I</i></button>
                 <button id="btnUnderline" title="Subrayado"><u>U</u></button>
+                <button id="btnLink" title="Insertar Enlace">🔗</button>
                 <span class="separator">|</span>
                 <button id="btnAlignLeft" title="Alinear Izquierda">Izq</button>
                 <button id="btnAlignCenter" title="Alinear Centro">Cent</button>
@@ -34,6 +35,8 @@
                 <span class="separator">|</span>
                 <button id="btnOrderedList" title="Lista Numerada">1</button>
                 <button id="btnUnorderedList" title="Viñetas">•</button>
+                <span class="separator">|</span>
+                <button id="btnSpellcheck" title="Corrector Ortográfico (Español)" style="width: auto; padding: 5px 10px;">ABC ✓</button>
             </div>
             <div class="copy">
                 <p>//DevEstrada</p>

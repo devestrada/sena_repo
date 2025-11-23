@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ===== state =====
     let figureCounter = 1;
+    let isSpellcheckEnabled = true;
 
     // ====================================================================
     // ====== HELPER FUNCTIONS (Optimization) =============================
@@ -57,6 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const contentDiv = document.createElement("div");
         contentDiv.classList.add("block-content");
         contentDiv.contentEditable = "true"; // Content IS editable
+        contentDiv.lang = "es";
+        contentDiv.spellcheck = isSpellcheckEnabled;
         contentDiv.innerHTML = templateBlock.innerHTML;
         
         newBlock.appendChild(contentDiv);
@@ -495,6 +498,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnAlignJustify = document.getElementById("btnAlignJustify");
     const btnOrderedList = document.getElementById("btnOrderedList");
     const btnUnorderedList = document.getElementById("btnUnorderedList");
+    const btnSpellcheck = document.getElementById("btnSpellcheck");
+    const btnLink = document.getElementById("btnLink");
+
+    function toggleSpellcheck() {
+        isSpellcheckEnabled = !isSpellcheckEnabled;
+        const editableBlocks = document.querySelectorAll(".block-content");
+        editableBlocks.forEach(block => {
+            block.spellcheck = isSpellcheckEnabled;
+        });
+        
+        // Update button visual state
+        if (btnSpellcheck) {
+            btnSpellcheck.style.background = isSpellcheckEnabled ? "#e0e0e0" : "#fff";
+            btnSpellcheck.innerHTML = isSpellcheckEnabled ? "ABC ✓" : "ABC ✗";
+        }
+    }
+
+    if (btnSpellcheck) {
+        btnSpellcheck.addEventListener("click", toggleSpellcheck);
+        // Set initial state
+        btnSpellcheck.style.background = isSpellcheckEnabled ? "#e0e0e0" : "#fff";
+    }
 
     function execCmd(command) {
         document.execCommand(command, false, null);
@@ -509,7 +534,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btnAlignRight) btnAlignRight.addEventListener("click", () => execCmd("justifyRight"));
     if (btnAlignJustify) btnAlignJustify.addEventListener("click", () => execCmd("justifyFull"));
 
-    function execCmdInParagraph(command) {
+    function execCmdInParagraph(command, value = null) {
         const selection = window.getSelection();
         if (!selection.rangeCount) return;
         
@@ -518,13 +543,22 @@ document.addEventListener("DOMContentLoaded", () => {
             ? range.commonAncestorContainer.closest('.placed-block') 
             : range.commonAncestorContainer.parentElement.closest('.placed-block');
 
-        if (block && block.id === 'paragraph') {
-            document.execCommand(command, false, null);
+        if (block && (block.id === 'paragraph' || block.contentEditable === "true" || block.querySelector('.block-content').contains(range.commonAncestorContainer))) {
+            document.execCommand(command, false, value);
         }
     }
 
     if (btnOrderedList) btnOrderedList.addEventListener("click", () => execCmdInParagraph("insertOrderedList"));
     if (btnUnorderedList) btnUnorderedList.addEventListener("click", () => execCmdInParagraph("insertUnorderedList"));
+
+    if (btnLink) {
+        btnLink.addEventListener("click", () => {
+            const url = prompt("Ingresa la URL del enlace:", "https://");
+            if (url) {
+                execCmdInParagraph("createLink", url);
+            }
+        });
+    }
 
     // ====================================================================
     // ====== SAVE / OPEN PROJECT FUNCTIONALITY ===========================
@@ -607,6 +641,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 const contentDiv = document.createElement("div");
                 contentDiv.classList.add("block-content");
                 contentDiv.contentEditable = "true";
+                contentDiv.lang = "es";
+                contentDiv.spellcheck = isSpellcheckEnabled;
                 
                 // Remove old delete button if present (will be re-added by setupBlockInteractivity)
                 let existingBtn = block.querySelector(".delete-block-btn");

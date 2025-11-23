@@ -64,6 +64,17 @@
                 <div class="block" id="image">
                     <span>Imagen</span>
                 </div>
+
+                <div class="block" id="note">
+                    <img src="./src/icons/create.svg">
+                    <span>Nota</span>
+                </div>
+
+                <div class="block" id="warning">
+                    <img src="./src/icons/warning.svg">
+                    <span>Advertencia</span>
+                </div>
+
             </div>
 
             <span class="separator"><span></span></span>

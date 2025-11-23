@@ -58,6 +58,30 @@
     }
 }
 
+#note {
+    background: #D1EFFF;
+    border: 1px solid #71cdff;
+    border-radius: 7px;
+    padding: 10px;
+
+    img {
+        width: 20px;
+        margin-right: 10px;
+    }
+}
+
+#warning {
+    background: #FFFFD1;
+    border: 1px solid #ffed4a;
+    border-radius: 7px;
+    padding: 10px;
+
+    img {
+        width: 20px;
+        margin-right: 10px;
+    }
+}
+
 /* FIGURA APA 7 */
 .figure-block {
     text-align: center;
@@ -137,6 +161,12 @@
     cursor: text;
     user-select: text;
     min-height: 1em;
+
+    ul li::marker,
+    ol li::marker {
+        font-weight: bold;
+    }
+
 }
 
 .page .placed-block:focus {

@@ -63,4 +63,13 @@
     .resize-handle {
         display: none;
     }
+
+    .image-placeholder {
+        display: none !important;
+    }
+
+    .page-number {
+        display: block !important;
+        color: #000;
+    }
 }

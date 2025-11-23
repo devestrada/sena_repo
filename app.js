@@ -73,6 +73,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const newPage = document.createElement("div");
         newPage.classList.add("page");
         newPage.innerHTML = ""; // página en blanco
+        
+        const numDiv = document.createElement("div");
+        numDiv.className = "page-number";
+        newPage.appendChild(numDiv);
+
         makePageInteractive(newPage);
         return newPage;
     }
@@ -178,12 +183,14 @@ document.addEventListener("DOMContentLoaded", () => {
         addTopBtn.addEventListener("click", () => {
             const newPage = createPage();
             pagesContainer.insertBefore(newPage, pagesContainer.firstChild);
+            updatePageNumbers();
         });
     }
     if (addBottomBtn) {
         addBottomBtn.addEventListener("click", () => {
             const newPage = createPage();
             pagesContainer.appendChild(newPage);
+            updatePageNumbers();
         });
     }
 
@@ -461,6 +468,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     initializeCounters();
 
+    function updatePageNumbers() {
+        const pages = pagesContainer.querySelectorAll(".page");
+        pages.forEach((page, index) => {
+            let numDiv = page.querySelector(".page-number");
+            if (!numDiv) {
+                numDiv = document.createElement("div");
+                numDiv.className = "page-number";
+                page.appendChild(numDiv);
+            }
+            numDiv.textContent = index + 1;
+        });
+    }
+    updatePageNumbers();
+
     // ====================================================================
     // ====== TOOLBAR FUNCTIONALITY =======================================
     // ====================================================================
@@ -604,7 +625,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         // 3. Recalculate figure counter
+        // 3. Recalculate figure counter
         initializeCounters();
+        updatePageNumbers();
     }
 
 });

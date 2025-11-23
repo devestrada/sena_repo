@@ -246,12 +246,50 @@ body {
         ol {
             margin: 0 0 1em 0;
             padding-left: 1.27cm;
-            /* Sangría de 0.5 pulgadas (1.27cm) para la viñeta */
             list-style-position: outside;
         }
 
         li {
             margin-bottom: 0;
+        }
+
+        /* APA 7 Headings Overrides inside .page */
+        #titleHeader {
+            border: none;
+            text-align: center;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 1em;
+            padding: 0;
+        }
+
+        #title {
+            display: block;
+            width: 100%;
+            border: none;
+            text-align: center;
+            font-weight: bold;
+            padding: 0;
+            margin-bottom: 1em;
+        }
+
+        #subtitle {
+            display: block;
+            width: 100%;
+            border: none;
+            text-align: left;
+            font-weight: bold;
+            padding: 0;
+            margin-bottom: 1em;
+        }
+
+        /* Page Number */
+        .page-number {
+            position: absolute;
+            top: 1.27cm;
+            right: 2.54cm;
+            font-size: 11pt;
+            font-family: inherit;
         }
     }
 

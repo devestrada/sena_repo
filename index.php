@@ -26,7 +26,7 @@
                 <button id="btnBold" title="Negrita"><b>B</b></button>
                 <button id="btnItalic" title="Cursiva"><i>I</i></button>
                 <button id="btnUnderline" title="Subrayado"><u>U</u></button>
-                <button id="btnLink" title="Insertar Enlace">🔗</button>
+                <button id="btnLink" title="Insertar Enlace">A</button>
                 <span class="separator">|</span>
                 <button id="btnAlignLeft" title="Alinear Izquierda">Izq</button>
                 <button id="btnAlignCenter" title="Alinear Centro">Cent</button>

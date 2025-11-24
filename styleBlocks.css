@@ -1,13 +1,13 @@
 :root {
     --green: #388E3C;
-    --select: #0078d7
+    --select: #0078d7;
 }
 
 .blocks {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
+    gap: 10px;
+    margin-top: 10px;
 
     .block {
         width: 100%;
@@ -46,7 +46,7 @@
     display: inline-block;
     background: #f4f4f4;
     border: 1px solid #ccc;
-    border-left: 6px solid var(--green);
+    border-left: 5px solid var(--green);
     border-radius: 7px;
     padding-left: 10px;
     word-wrap: break-word;
@@ -87,12 +87,12 @@
     text-align: center;
     margin: 20px 0;
     position: relative;
-}
 
-.figure-block img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 6px;
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+    }
 }
 
 /* Placeholder cuando aún no hay imagen */
@@ -108,13 +108,6 @@
 .image-placeholder:hover {
     background: #f5f5f5;
     border-color: #888;
-}
-
-/* Caption de la figura */
-.figure-caption {
-    font-size: 14px;
-    font-style: italic;
-    margin-top: 8px;
 }
 
 /* Contenedor que envuelve imagen + handle */
@@ -145,12 +138,11 @@
     margin-bottom: 10px;
     background-color: transparent;
     border: 1px dashed transparent;
-    transition: border-color .25s, box-shadow .25s;
+    transition: border-color .25s;
 }
 
 .page .placed-block:hover {
     border-color: rgba(0, 0, 0, 0.15);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.10);
 }
 
 .block-content {
@@ -161,16 +153,36 @@
     cursor: text;
     user-select: text;
     min-height: 1em;
-
-    ul li::marker,
-    ol li::marker {
-        font-weight: bold;
-    }
-
 }
 
-.page .placed-block:focus {
-    outline: 2px solid var(--select);
+.block-content:focus {
+    border: 1px dashed var(--select);
+}
+
+.page #title {
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.page #paragraph {
+    text-align: justify;
+}
+
+.page #code {
+    padding: 7px 10px;
+}
+
+.page #note,
+.page #warning {
+    position: relative;
+
+    img {
+        position: absolute;
+        top: 3px;
+        left: 5px;
+        width: 24px;
+        margin: 0;
+    }
 }
 
 /* Indicador visual al arrastrar */

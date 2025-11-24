@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./styleBlocks.css">
     <link rel="stylesheet" href="./stylePrint.css">
 
+    <link rel="shortcut icon" href="./src/img/favicon.ico" type="image/x-icon">
     <title>Editor Online</title>
 </head>
 
@@ -40,7 +41,7 @@
             </div>
             <div class="copy">
                 <p>//DevEstrada</p>
-                <p>Beta v1.0</p>
+                <p>v1.1</p>
             </div>
         </div>
 

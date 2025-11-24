@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
     const blocks = document.querySelectorAll(".blocks .block");
     const pagesContainer = document.getElementById("pagesContainer");
@@ -6,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const addBottomBtn = document.getElementById("addPageBottom");
 
     // ===== state =====
-    let figureCounter = 1;
     let isSpellcheckEnabled = true;
 
     // ====================================================================
@@ -30,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         newBtn.addEventListener("click", () => {
             block.remove();
-            renumerarFiguras();
         });
 
         // 2. Reorder
@@ -209,38 +206,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // ====== FIGURE / IMAGE HANDLING =====================================
     // ====================================================================
 
-    function renumerarFiguras() {
-        const figuras = document.querySelectorAll(".figure-block");
-        let contador = 1;
-        figuras.forEach(figura => {
-            const caption = figura.querySelector(".figure-caption");
-            if (caption) {
-                const userText = (caption.dataset.userText) ? caption.dataset.userText : null;
-                if (!userText) {
-                    caption.textContent = `Figura ${contador}. Descripción de la figura.`;
-                } else {
-                    caption.textContent = `Figura ${contador}. ${userText}`;
-                    delete caption.dataset.userText;
-                }
-            }
-            contador++;
-        });
-        figureCounter = contador;
-    }
-
-    document.addEventListener("focusout", (e) => {
-        const cap = e.target.closest && e.target.closest(".figure-caption");
-        if (!cap) return;
-        const text = cap.textContent.trim();
-        const parts = text.split(/\.\s+/);
-        if (parts.length >= 2) {
-            const remainder = parts.slice(1).join('. ');
-            cap.dataset.userText = remainder;
-        } else {
-            cap.dataset.userText = "";
-        }
-    });
-
     function createEmptyAPAImageBlock(origBlock, page) {
         const figureContainer = document.createElement("div");
         figureContainer.classList.add("figure-block", "placed-block");
@@ -251,13 +216,6 @@ document.addEventListener("DOMContentLoaded", () => {
         placeholder.className = "image-placeholder";
         placeholder.innerHTML = `<div">Selecciona una imagen</div>`;
         figureContainer.appendChild(placeholder);
-
-        // Caption
-        const caption = document.createElement("div");
-        caption.classList.add("figure-caption");
-        caption.textContent = `Figura ${figureCounter}. Descripción de la figura.`;
-        caption.contentEditable = "true";
-        figureContainer.appendChild(caption);
 
         page.appendChild(figureContainer);
         
@@ -299,13 +257,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 handle.title = "Arrastra para redimensionar";
                 imgWrapper.appendChild(handle);
 
-                figureContainer.insertBefore(imgWrapper, caption);
+                figureContainer.appendChild(imgWrapper);
                 placeholder.remove();
 
                 makeImageResizable(imgWrapper, img);
-
-                figureCounter++;
-                renumerarFiguras();
             };
             reader.readAsDataURL(file);
         });
@@ -344,21 +299,12 @@ document.addEventListener("DOMContentLoaded", () => {
         handle.title = "Arrastra para redimensionar";
         imgWrapper.appendChild(handle);
 
-        const caption = document.createElement("div");
-        caption.classList.add("figure-caption");
-        caption.contentEditable = "true";
-        caption.textContent = `Figura ${figureCounter}. Descripción de la figura.`;
-
         figureContainer.appendChild(imgWrapper);
-        figureContainer.appendChild(caption);
 
         page.appendChild(figureContainer);
         
         setupBlockInteractivity(figureContainer);
         makeImageResizable(imgWrapper, img);
-
-        figureCounter++;
-        renumerarFiguras();
     }
 
     function makeImageResizable(wrapper, img) {
@@ -460,16 +406,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const text = clipboard.getData('text/plain');
       document.execCommand('insertText', false, text);
     });
-
-    function initializeCounters() {
-        const figuras = document.querySelectorAll(".figure-block");
-        if (figuras.length > 0) {
-            figureCounter = figuras.length + 1;
-        } else {
-            figureCounter = 1;
-        }
-    }
-    initializeCounters();
 
     function updatePageNumbers() {
         const pages = pagesContainer.querySelectorAll(".page");
@@ -660,9 +596,6 @@ document.addEventListener("DOMContentLoaded", () => {
             setupBlockInteractivity(block);
         });
 
-        // 3. Recalculate figure counter
-        // 3. Recalculate figure counter
-        initializeCounters();
         updatePageNumbers();
     }
 

@@ -55,6 +55,10 @@
         /* cada .page = nueva hoja */
     }
 
+    .page .placed-block {
+        border: none;
+    }
+
     /**/
     .delete-block-btn {
         display: none;

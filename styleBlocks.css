@@ -13,9 +13,46 @@
         width: 100%;
         padding: 10px;
         border: 1px solid #ccc;
+        border-radius: 7px;
         cursor: move;
         user-select: none;
+        background: #fff;
     }
+}
+
+/* Botones de añadir bloque en sidebar */
+.block {
+    position: relative;
+    /* Ensure flex or grid if needed, though originally simple div */
+    display: flex;
+    align-items: center;
+}
+
+.add-block-btn {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background: transparent;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #555;
+    font-size: 1.2rem;
+    line-height: 1;
+    margin-left: 10px;
+    transition: all 0.2s;
+}
+
+.add-block-btn:hover {
+    background: #e0e0e0;
+    color: #000;
+    border-color: #999;
 }
 
 /* === Estilos para la página y bloques === */
@@ -59,6 +96,8 @@
 }
 
 #note {
+    display: flex;
+    align-items: center;
     background: #D1EFFF;
     border: 1px solid #71cdff;
     border-radius: 7px;
@@ -71,6 +110,8 @@
 }
 
 #warning {
+    display: flex;
+    align-items: center;
     background: #FFFFD1;
     border: 1px solid #ffed4a;
     border-radius: 7px;
@@ -92,6 +133,7 @@
         max-width: 100%;
         height: auto;
         border-radius: 6px;
+        box-shadow: 3px 3px 0 var(--green);
     }
 }
 
@@ -135,18 +177,18 @@
 .page .placed-block {
     position: relative;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 0.5rem;
     background-color: transparent;
-    border: 1px dashed transparent;
-    transition: border-color .25s;
-}
+    border: 1px solid #aaa; /* Oculto por defecto */
+    transition: all 0.2s ease;
 
-.page .placed-block:hover {
-    border-color: rgba(0, 0, 0, 0.15);
+    &:hover {
+        border: 1px solid #388e3c;
+        background: rgba(56, 142, 60, 0.02);
+    }
 }
 
 .block-content {
-    outline: none;
     text-indent: 1.27cm;
     text-align: inherit;
     color: inherit;
@@ -156,7 +198,7 @@
 }
 
 .block-content:focus {
-    border: 1px dashed var(--select);
+    outline: 1px solid var(--select);
 }
 
 .page #title {
@@ -192,26 +234,25 @@
 
 /* ===== Efecto visual al arrastrar un bloque ===== */
 .placed-block.dragging {
-    opacity: 0.6;
-    border: 2px dashed #4a90e2;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.20);
+    opacity: 0.4;
+    transform: scale(0.98);
+    border: 2px solid #388e3c;
 }
 
 /* Indicador visual para eliminar */
 .delete-block-btn {
     position: absolute;
-    top: 4px;
-    right: 4px;
-    background: #ff4b4b;
+    right: -35px; /* Fuera del margen para no estorbar el texto */
+    top: 0;
+    background: #f44336;
     color: white;
     border: none;
-    padding: 4px 6px;
     border-radius: 4px;
-    font-size: 12px;
+    width: 25px;
+    height: 25px;
     cursor: pointer;
     opacity: 0;
-    transition: opacity .2s ease;
-    z-index: 10;
+    transition: opacity 0.2s;
 }
 
 .placed-block:hover .delete-block-btn {

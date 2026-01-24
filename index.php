@@ -41,7 +41,7 @@
             </div>
             <div class="copy">
                 <p>//DevEstrada</p>
-                <p>v1.1</p>
+                <p>v1.2</p>
             </div>
         </div>
 
@@ -52,31 +52,39 @@
             <div class="blocks">
                 <div class="block" id="titleHeader">
                     <span>Encabezado</span>
+                    <button class="add-block-btn" title="Añadir al documento">+</button>
                 </div>
                 <div class="block" id="title">
                     <span>Título</span>
+                    <button class="add-block-btn" title="Añadir al documento">+</button>
                 </div>
                 <div class="block" id="subtitle">
                     <span>Subtítulo</span>
+                    <button class="add-block-btn" title="Añadir al documento">+</button>
                 </div>
                 <div class="block" id="paragraph">
                     <span>Párrafo</span>
+                    <button class="add-block-btn" title="Añadir al documento">+</button>
                 </div>
                 <div class="block" id="code">
                     <span>Código</span>
+                    <button class="add-block-btn" title="Añadir al documento">+</button>
                 </div>
                 <div class="block" id="image">
                     <span>Imagen</span>
+                    <button class="add-block-btn" title="Añadir al documento">+</button>
                 </div>
 
                 <div class="block" id="note">
                     <img src="./src/icons/create.svg">
                     <span>Nota</span>
+                    <button class="add-block-btn" title="Añadir al documento">+</button>
                 </div>
 
                 <div class="block" id="warning">
                     <img src="./src/icons/warning.svg">
                     <span>Advertencia</span>
+                    <button class="add-block-btn" title="Añadir al documento">+</button>
                 </div>
 
             </div>
@@ -95,16 +103,8 @@
 
         <!-- Editor -->
         <div class="editor">
-            <div class="addBtn top">
-                <button id="addPageTop"><img src="./src/icons/addCircle.svg"><span></span></button>
-            </div>
-
             <div id="pagesContainer">
                 <div class="page" id="documento"></div>
-            </div>
-
-            <div class="addBtn bottom">
-                <button id="addPageBottom"><img src="./src/icons/addCircle.svg"><span></span></button>
             </div>
         </div>
     </div>
